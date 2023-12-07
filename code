@@ -1,0 +1,206 @@
+#calculator; Devin Reimer
+import time
+import math
+history=[]
+answer = None
+
+def Addition():
+    try:
+        lst_add = []
+        Sum=0
+        n=int(input("How many numbers: "))
+        for i in range(0,n):
+            y=int(input())
+            lst_add.append(y)
+            Sum+=y
+        print(Sum)
+        global answer
+        answer=Sum
+        History_Update()
+    except ValueError:
+        print("Invalid Value Entered")
+def Subtraction():
+    try:
+        lst_sub = []
+        Sub=0
+        n=int(input("How many numbers: "))
+        for i in range(0,n):
+            y=int(input())
+            lst_sub.append(y)
+            x=lst_sub[0]
+            Sub-=y
+        print(Sub+x+x)
+        global answer
+        answer=Sub+x+x
+        History_Update()
+    except ValueError:
+        print("Invalid Value Entered")
+def Multiplication():
+    try:
+        lst_mult = []
+        mult=1
+        n=int(input("How many numbers: "))
+        for i in range(0,n):
+            y=int(input())
+            lst_mult.append(y)
+            mult*=y
+        print(mult)
+        global answer
+        answer=mult
+        History_Update()
+    except ValueError:
+        print("Invalid Value Entered")
+def Division():
+    try:
+        lst=[]
+        n=int(input("How many numbers: "))
+        for i in range(0,n):
+            x=float(input())
+            lst.append(x)
+        div=lst[0]*lst[0]
+        for o in lst:
+            div/=o
+        print(div)
+        global answer
+        answer=div
+        History_Update()
+    except ZeroDivisionError:
+        print("Cannot divide by zero")
+    except ValueError:
+        print("Invalid Value Entered")
+def Exponent_SqRt():
+    x=int(input("Which Function?\n1.Exponent 2.Square Root\n"))
+    global answer
+    if x==1:
+        try:
+            x=float(input("What Number: "))
+            y=int(input("What power: "))
+            print(x**y)
+            answer=x**y
+            History_Update()
+        except ValueError:
+                print("Invalid Value Entered")
+    elif x==2:
+        try:
+            x=float(input("What Number: "))
+            print(math.sqrt(x))
+            answer=math.sqrt(x)
+            History_Update()
+        except ValueError:
+            print("Invalid Value Entered")
+    else:
+        print("Invalid Value Entered")
+def Trig():
+    x=int(input("Which Trig Function?\n1.Sin    2.Cos\n3.Tan    4.ArcSin\n5.ArcCos 6.ArcTan\n"))
+    global answer
+    if x==1:
+        try:
+            y=float(input("Number in Radians:"))
+            print(math.sin(y)) 
+            answer=math.sin(y)
+            History_Update()
+        except ValueError:
+            print("Invalid Value Entered")
+    elif x==2:
+        try:
+            y=float(input("Number in Radians:"))
+            print(math.cos(y)) 
+            answer=math.cos(y)
+            History_Update()
+        except ValueError:
+            print("Invalid Value Entered")
+    elif x==3:
+        try:
+            y=float(input("Number in Radians:"))
+            print(math.tan(y)) 
+            answer=math.tan(y)
+            History_Update()
+        except ValueError:
+            print("Invalid Value Entered")
+    elif x==4:
+        try:    
+            y=float(input("Number [-1,1] in Radians:"))
+            print(math.asin(y)) 
+            answer=math.asin(y)
+            History_Update()
+        except ValueError:
+            print("Invalid Value Entered")
+    elif x==5:
+        try:
+            y=float(input("Number [-1,1] in Radians:"))
+            print(math.acos(y)) 
+            answer=math.acos(y)
+            History_Update()  
+        except ValueError:
+            print("Invalid Value Entered")
+    elif x==6:
+       try:
+            y=float(input("Number [-1,1] in Radians:"))
+            print(math.atan(y)) 
+            answer=math.atan(y)
+            History_Update() 
+       except ValueError:
+            print("Invalid Value Entered")
+    else:
+        print("Invalid Value Entered")
+def E_Log():
+    x=int(input("Which Function?\n1.E^x 2.Log 3.LN\n"))
+    global answer
+    if x==1:
+        try:
+            y=float(input("Enter x in E^x:"))
+            print(math.exp(y))
+            answer=math.exp(y)
+            History_Update()
+        except ValueError:
+            print("Invalid Value Entered")
+    elif x==2:
+        try:
+            y=float(input("Enter x in Log(x):"))
+            print(math.log10(y))
+            answer=math.log10(y)
+            History_Update()
+        except ValueError:
+            print("Invalid Value Entered")
+    elif x==3:
+        try:
+            y=float(input("Enter x in LN(x):"))
+            print(math.log(y))
+            answer=math.log(y)
+            History_Update()
+        except ValueError:
+            print("Invalid Value Entered")
+    else:
+        print("Invalid Value Entered")
+
+def History():
+    print("History:",history)
+def History_Update():
+    history.append(answer)
+
+while(True):    
+    time.sleep(1)
+    try:
+        x=int(input("What function? \n1.Addition\n2.Subtraction\n3.Multiplication\n4.Division\n5.Exponent/SqRt\n6.Trig\n7.E^x/Log\n8.History\n9.Stop\n"))
+        if x==1:
+            Addition()
+        elif x==2:
+            Subtraction()
+        elif x==3:
+            Multiplication()
+        elif x==4:
+            Division()
+        elif x==5:
+            Exponent_SqRt()
+        elif x==6:
+            Trig()
+        elif x==7:
+            E_Log()
+        elif x==8:
+            History()
+        elif x==9:
+            break
+        else:
+            print("Not a valid input")
+    except:
+        print("Not a valid input")
